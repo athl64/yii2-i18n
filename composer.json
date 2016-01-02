@@ -1,5 +1,5 @@
 {
-    "name": "dvixi/yii2-i18n-module",
+    "name": "dvixi/yii2-i18n",
     "description": "Yii2 i18n (internalization) module makes the translation of your application so simple",
     "version": "0.1.0",
     "type": "yii2-extension",

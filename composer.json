@@ -1,0 +1,25 @@
+{
+    "name": "dvixi/yii2-i18n-module",
+    "description": "Yii2 i18n (internalization) module makes the translation of your application so simple",
+    "version": "0.1.0",
+    "type": "yii2-extension",
+    "keywords": [
+        "yii2",
+        "i18n",
+        "translation",
+        "translations"
+    ],
+    "time": "2016-01-03",
+    "license": "MIT",
+    "require": {
+        "yiisoft/yii2": "~2"
+    },
+    "autoload": {
+        "psr-4": {
+            "dvixi\\yii2\\I18n\\": ""
+        }
+    },
+    "extra": {
+        "bootstrap": "dvixi\\yii2\\I18n\\Bootstrap"
+    }
+}

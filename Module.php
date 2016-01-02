@@ -20,15 +20,7 @@ class Module extends \yii\base\Module
      */
     public static function missingTranslation(MissingTranslationEvent $event)
     {
-        $driver = Yii::$app->getDb()->getDriverName();
-        $caseInsensitivePrefix = $driver === 'mysql' ? 'binary' : '';
-        $sourceMessage = SourceMessage::find()
-            ->where('category = :category and message = ' . $caseInsensitivePrefix . ' :message', [
-                ':category' => $event->category,
-                ':message' => $event->message
-            ])
-            ->with('messages')
-            ->one();
+        $sourceMessage = static::getSourceMessage($event);
 
         if (!$sourceMessage) {
             $sourceMessage = new SourceMessage;
@@ -40,5 +32,40 @@ class Module extends \yii\base\Module
         }
         $sourceMessage->initMessages();
         $sourceMessage->saveMessages();
+    }
+
+    protected static function getSourceMessage(MissingTranslationEvent $event)
+    {
+        $sourceMessage = null;
+        $key = [
+            __CLASS__,
+            $event->category,
+            $event->language,
+        ];
+
+        if( isset(Yii::$app->i18n->enableCaching) && Yii::$app->i18n->enableCaching ) {
+            if( !$sourceMessage = Yii::$app->i18n->cache->get($key) ) {
+                $sourceMessage = static::getSourceMessageFromDb($event);
+                Yii::$app->i18n->cache->set($key, $sourceMessage, Yii::$app->i18n->cachingDuration);
+            }
+        } else {
+            $sourceMessage = static::getSourceMessageFromDb($event);
+        }
+
+        return $sourceMessage;
+    }
+
+    protected static function getSourceMessageFromDb(MissingTranslationEvent $event)
+    {
+        $driver = Yii::$app->getDb()->getDriverName();
+        $caseInsensitivePrefix = $driver === 'mysql' ? 'binary' : '';
+
+        return SourceMessage::find()
+            ->where('category = :category and message = ' . $caseInsensitivePrefix . ' :message', [
+                ':category' => $event->category,
+                ':message' => $event->message
+            ])
+            ->with('messages')
+            ->one();
     }
 }

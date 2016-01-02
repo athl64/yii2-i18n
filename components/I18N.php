@@ -5,6 +5,8 @@ namespace dvixi\yii2\I18n\components;
 use yii\base\InvalidConfigException;
 use yii\i18n\DbMessageSource;
 use yii\helpers\ArrayHelper;
+use yii\di\Instance;
+use yii\caching\Cache;
 
 class I18N extends \yii\i18n\I18N
 {
@@ -32,13 +34,18 @@ class I18N extends \yii\i18n\I18N
             throw new InvalidConfigException('You should configure i18n component [language]');
         }
 
-        $cacheConfig = $this->enableCaching
-            ? [
+        $cacheConfig = [];
+
+        if( $this->enableCaching ) {
+            if ($this->enableCaching) {
+                $this->cache = Instance::ensure($this->cache, Cache::className());
+            }
+            $cacheConfig = [
                 'cache' => $this->cache,
                 'cachingDuration' => $this->cachingDuration,
                 'enableCaching' => true,
-            ]
-            : [];
+            ];
+        }
 
         $translationConfig = [
             'class' => DbMessageSource::className(),

@@ -41,6 +41,7 @@ class Module extends \yii\base\Module
             __CLASS__,
             $event->category,
             $event->language,
+            $event->message,
         ];
 
         if( isset(Yii::$app->i18n->enableCaching) && Yii::$app->i18n->enableCaching ) {

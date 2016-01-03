@@ -1,7 +1,7 @@
 {
     "name": "dvixi/yii2-i18n",
     "description": "Yii2 i18n (internalization) module makes the translation of your application so simple",
-    "version": "0.1.1",
+    "version": "0.1.2",
     "type": "yii2-extension",
     "keywords": [
         "yii2",

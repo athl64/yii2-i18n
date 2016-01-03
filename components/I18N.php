@@ -37,9 +37,7 @@ class I18N extends \yii\i18n\I18N
         $cacheConfig = [];
 
         if( $this->enableCaching ) {
-            if ($this->enableCaching) {
-                $this->cache = Instance::ensure($this->cache, Cache::className());
-            }
+            $this->cache = Instance::ensure($this->cache, Cache::className());
             $cacheConfig = [
                 'cache' => $this->cache,
                 'cachingDuration' => $this->cachingDuration,

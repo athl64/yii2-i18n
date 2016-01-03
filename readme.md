@@ -1,4 +1,7 @@
 # Yii2 I18N module
+added caching for messages and source messages
+
+## modification of [Zelenin Yii2 i18n](https://github.com/zelenin/yii2-i18n-module)
 
 [Yii2](http://www.yiiframework.com) i18n (internalization) module makes the translation of your application so simple
 
@@ -11,13 +14,13 @@ The preferred way to install this extension is through [Composer](http://getcomp
 Either run
 
 ```
-php composer.phar require zelenin/yii2-i18n-module "dev-master"
+php composer.phar require dvixi/yii2-i18n "dev-master"
 ```
 
 or add
 
 ```
-"zelenin/yii2-i18n-module": "dev-master"
+"dvixiyii2-i18n": "dev-master"
 ```
 
 to the require section of your ```composer.json```
@@ -69,7 +72,7 @@ Run:
 php yii i18n/export @dvixi/yii2/I18n/messages dvixi/yii2/i18n
 ```
 
-where ```@Zelenin/yii/modules/I18n/messages``` is path for app translations and ```zelenin/modules/i18n``` is translations category in DB
+where ```@dvixi/yii2/I18n/messages``` is path for app translations and ```zelenin/modules/i18n``` is translations category in DB
 
 ### Using ```yii``` category with DB
 
@@ -99,6 +102,6 @@ Component uses yii\i18n\MissingTranslationEvent for auto-add of missing translat
 
 See [Yii2 i18n guide](https://github.com/yiisoft/yii2/blob/master/docs/guide/tutorial-i18n.md)
 
-## Author
+## Source author
 
 [Aleksandr Zelenin](https://github.com/zelenin/), e-mail: [aleksandr@zelenin.me](mailto:aleksandr@zelenin.me)

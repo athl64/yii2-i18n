@@ -12,7 +12,7 @@ use yii\widgets\ActiveForm;
 use yii\widgets\Breadcrumbs;
 
 $this->title = Module::t('Update') . ': ' . $model->message;
-echo Breadcrumb::widget(['links' => [
+echo Breadcrumbs::widget(['links' => [
     ['label' => Module::t('Translations'), 'url' => ['index']],
     ['label' => $this->title]
 ]]);

@@ -34,6 +34,10 @@ class I18N extends \yii\i18n\I18N
             throw new InvalidConfigException('You should configure i18n component [language]');
         }
 
+        if( $this->languages instanceof \Closure) {
+            $this->languages = $this->languages->__invoke();
+        }
+
         $cacheConfig = [];
 
         if( $this->enableCaching ) {
